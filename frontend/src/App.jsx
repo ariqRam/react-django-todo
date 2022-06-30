@@ -1,28 +1,16 @@
 import { useEffect, useState } from "react";
 
 import TodoList from "./components/TodoList";
-import "./static/App.css";
+import TodoInput from "./components/TodoInput"
 
-const todosDb = [
-  {
-    id: 1,
-    title: "Walk the dog",
-    description: "Walk the dog to Menlo park for 30 minutes",
-    completed: false,
-  },
-  {
-    id: 2,
-    title: "Study math",
-    description: "Study linear algebra for 2 hours",
-    completed: false,
-  },
-];
+import "./static/App.css";
+import mockupDb from './static/mockupDb.json';
 
 function App() {
   const [todos, setTodos] = useState([]);
 
   const initializeTodos = () => {
-    setTodos(todosDb);
+    setTodos(mockupDb);
   };
 
   useEffect(() => {
@@ -32,6 +20,7 @@ function App() {
   return (
     <div className="App">
       <TodoList todos={todos} setTodos={(todos) => setTodos([...todos])} />
+      <TodoInput />
     </div>
   );
 }

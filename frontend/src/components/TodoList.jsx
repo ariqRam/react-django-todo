@@ -1,4 +1,5 @@
 import Todo from "./Todo";
+import "../static/todoList.css"
 
 const TodoList = (props) => {
   const { todos, setTodos } = props;
@@ -15,15 +16,17 @@ const TodoList = (props) => {
 
   return (
     <>
-      {todos.map((todo) => {
-        return (
-          <Todo
-            todo={todo}
-            setTodo={(newTodo) => setTodo(todo.id, newTodo)}
-            key={todo.id}
-          />
-        );
-      })}
+      <div className="todoList">
+        {todos.map((todo) => {
+          return (
+            <Todo
+              todo={todo}
+              setTodo={(newTodo) => setTodo(todo.id, newTodo)}
+              key={todo.id}
+            />
+          );
+        })}
+      </div>
     </>
   );
 };

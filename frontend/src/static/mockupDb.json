@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "title": "Walk the dog",
+        "description": "Walk the dog to Menlo park for 30 minutes",
+        "completed": false
+    },
+    {
+        "id": 2,
+        "title": "Study math",
+        "description": "Study linear algebra for 2 hours",
+        "completed": false
+    }
+]

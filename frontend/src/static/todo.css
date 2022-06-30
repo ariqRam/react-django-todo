@@ -1,13 +1,9 @@
 .todoContainer {
-    width: 50%;
-    margin: 20px auto;
+    margin: auto;
     padding: 1.5rem;
-    border: 1px solid black;
-    border-radius: 10px;
 }
 
 .todoTitle {
     display: inline;
     color: rgb(12, 157, 80);
 }
-

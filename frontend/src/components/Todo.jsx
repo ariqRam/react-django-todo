@@ -32,6 +32,7 @@ const Todo = (props) => {
         onClick={onCheckboxClick}
       />
       <p>{todo.description}</p>
+      <hr />
     </div>
   );
 };
