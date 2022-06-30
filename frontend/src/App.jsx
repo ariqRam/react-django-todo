@@ -25,18 +25,13 @@ function App() {
     setTodos(todosDb);
   };
 
-  const changeTodos = (todos) => {
-    console.log(todos);
-    setTodos(todos);
-  };
-
   useEffect(() => {
     initializeTodos();
   }, [todos]);
 
   return (
     <div className="App">
-      <TodoList todos={todos} setTodos={changeTodos} />
+      <TodoList todos={todos} setTodos={(todos) => setTodos([...todos])} />
     </div>
   );
 }
