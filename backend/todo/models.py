@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 
+
 class User(models.Model):
     username = models.CharField(max_length=20)
     email = models.EmailField()
@@ -16,6 +17,7 @@ class ToDo(models.Model):
     description = models.TextField()
     completed = models.BooleanField(default=False)
     # username = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.title
