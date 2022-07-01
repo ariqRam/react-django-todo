@@ -20,7 +20,7 @@ function App() {
   return (
     <div className="App">
       <TodoList todos={todos} setTodos={(todos) => setTodos([...todos])} />
-      <TodoInput />
+      <TodoInput initializeTodos={initializeTodos} />
     </div>
   );
 }
