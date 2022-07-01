@@ -16,7 +16,6 @@ class ToDo(models.Model):
     title = models.CharField(max_length=30)
     description = models.TextField()
     completed = models.BooleanField(default=False)
-    # username = models.OneToOneField(User, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
