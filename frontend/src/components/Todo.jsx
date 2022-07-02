@@ -10,6 +10,7 @@ const Todo = (props) => {
 
   const onCheckboxClick = (event) => {
     event.target.checked = todo.completed;
+    props.handleTodoSelect(event);
   };
 
   return (

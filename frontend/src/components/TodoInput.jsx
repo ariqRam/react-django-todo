@@ -7,7 +7,8 @@ const TodoInput = (props) => {
     const [newTodo, setNewTodo] = useState({});
 
     const handleChange = (event) => {
-        setNewTodo({ id: mockupDb.length + 1, title: event.target.value, description: 'Please do it', completed: false });
+        const lastTodo = mockupDb[mockupDb.length - 1];
+        setNewTodo({ id: mockupDb ? lastTodo.id + 1 : 1, title: event.target.value, description: 'Please do it', completed: false });
     }
 
     const handleSubmit = (event) => {
