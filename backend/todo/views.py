@@ -5,7 +5,8 @@ from django.contrib.auth.models import User, auth
 # Create your views here.
 
 def home(request):
-    return HttpResponse("home page")
+    return render(request, "home.html")
+
 
 def todo(request):
     return HttpResponse("todo page")
