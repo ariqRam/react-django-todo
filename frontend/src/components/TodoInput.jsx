@@ -1,17 +1,29 @@
 import { useState } from "react";
-import mockupDb from '../static/mockupDb.json';
 import Axios from 'axios';
 import { useEffect } from "react";
 
+import '../static/todoInput.css';
+import mockupDb from '../static/mockupDb.json';
+
 const TodoInput = (props) => {
     const [newTodo, setNewTodo] = useState({});
+    const [newTitle, setNewTitle] = useState('');
+    const [newDesc, setNewDesc] = useState('');
 
     const handleChange = (event) => {
-        const lastTodo = mockupDb[mockupDb.length - 1];
-        setNewTodo({ id: mockupDb ? lastTodo.id + 1 : 1, title: event.target.value, description: 'Please do it', completed: false });
+        // handle the change in todo title
+        setNewTitle(event.target.value);
+        // const lastTodo = mockupDb[mockupDb.length - 1];
+        // setNewTodo({ id: mockupDb ? lastTodo.id + 1 : 1, title: event.target.value, description: 'Please do it', completed: false });
+    }
+
+    const handleDescChange = (event) => {
+        setNewDesc(event.target.value);
     }
 
     const handleSubmit = (event) => {
+        const lastTodo = mockupDb[mockupDb.length - 1];
+        const newTodo = { id: mockupDb ? lastTodo.id + 1 : 1, title: newTitle, description: newDesc, completed: false }
         event.preventDefault();
         const newMockupDb = [...mockupDb, newTodo];
         console.log('submit!!');
@@ -19,8 +31,9 @@ const TodoInput = (props) => {
             .then(res => {
                 console.log(res);
             });
-        setNewTodo({});
-        // console.log(newTodo);
+
+        setNewTitle('');
+        setNewDesc('');
         props.initializeTodos();
     }
 
@@ -30,8 +43,10 @@ const TodoInput = (props) => {
 
     return (
         <>
-            <form>
-                <input type="text" placeholder="Enter a new todo list . . ." onChange={handleChange} value={newTodo['title']} />
+            <form className="inputGroup">
+                <h1>Add a Todo</h1>
+                <input type="text" placeholder="Enter a new todo title . . ." onChange={handleChange} value={newTitle} />
+                <input type="text" placeholder="Enter a description . . ." onChange={handleDescChange} value={newDesc} />
                 <input type="submit" onClick={handleSubmit} />
             </form>
         </>

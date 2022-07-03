@@ -1,22 +1,28 @@
-import json
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 
 import os
-
-# Create your views here.
+import json
 
 
 def login(request):
+    """
+    POST : Login
+    """
     return HttpResponse("Please login!")
 
 
 def todo(request):
+    """
+    GET : Return all the todo list of the logged user
+    POST : Add a todo
+    DELETE : Delete a set of todos
+    """
     return HttpResponse("Your To-do List..")
 
 
-# this is a mockup endpoint
+# this is a mockup endpoint to be deleted in production
 @csrf_exempt
 def save_todo(request):
     """
