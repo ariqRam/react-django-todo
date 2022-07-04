@@ -1,23 +1,17 @@
-from django.http import HttpResponse
+import os
+import json
+
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 
-import os
-import json
 from django.contrib import messages
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.models import User, auth
 
 
-def login(request):
-    """
-    POST : Login
-    """
-    return HttpResponse("Please login!")
 
 def home(request):
     return render(request, "home.html")
-
 
 
 def todo(request):
@@ -26,28 +20,7 @@ def todo(request):
     POST : Add a todo
     DELETE : Delete a set of todos
     """
-    return HttpResponse("Your To-do List..")
-
-
-# this is a mockup endpoint to be deleted in production
-@csrf_exempt
-def save_todo(request):
-    """
-    TODO
-    > Learn about CSRF
-    > Ensure security in between API calls with CSRF
-    """
-    mockup_db = open(os.path.join(os.path.dirname(settings.BASE_DIR),
-                     "frontend/src/static/mockupDb.json"), "w")
-
-    content = request.body.decode('utf-8')
-    body = json.loads(content)
-    print(body)
-
-    with mockup_db as f:
-        json.dump(body, f)
-
-    return HttpResponse(content, "is saved")
+    return render(request, "todo.html")
 
 
 def signup(request):
@@ -102,4 +75,24 @@ def login(request):
 
 def logout(request):
     return HttpResponse("logged out")
-    
+
+
+# this is a mockup endpoint to be deleted in production
+@csrf_exempt
+def save_todo(request):
+    """
+    TODO
+    > Learn about CSRF
+    > Ensure security in between API calls with CSRF
+    """
+    mockup_db = open(os.path.join(os.path.dirname(settings.BASE_DIR),
+                     "frontend/src/static/mockupDb.json"), "w")
+
+    content = request.body.decode('utf-8')
+    body = json.loads(content)
+    print(body)
+
+    with mockup_db as f:
+        json.dump(body, f)
+
+    return HttpResponse(content, "is saved")
