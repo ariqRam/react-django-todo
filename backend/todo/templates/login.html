@@ -22,7 +22,7 @@
         {% endfor %}
     </div>
     <div class="mx-auto" style="width: 500px" ;>
-        <form action="login" method="post" class="form-horizontal">
+        <form action={% url "login" %} method="post" class="form-horizontal">
             {% csrf_token %}
             <div class="col-xs-8 col-xs-offset-4">
                 <h2 style="text-align:center;">Login</h2>

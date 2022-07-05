@@ -21,7 +21,7 @@
 		</div>
 		{% endfor %}
 	</div>
-	<form action="/signup" method="POST" class="form-horizontal">
+	<form action={% url "signup" %} method="POST" class="form-horizontal">
 		{% csrf_token %}
 		<div class="mx-auto" style="width: 400px;">
 
@@ -59,7 +59,7 @@
 					placeholder="Confirm Your Password" Required>
 			</div>
 			<button type="submit" class="btn btn-primary">SIGNUP</button>
-			<a class="btn btn-dark" href="login" role="button">LOGIN</a>
+			<a class="btn btn-dark" href={% url "login" %} role="button">LOGIN</a>
 		</div>
 	</form>
 

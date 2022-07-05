@@ -8,6 +8,10 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.models import User, auth
 
+from rest_framework import viewsets
+from .serializers import TodoSerializer
+from .models import ToDo
+
 
 
 def home(request):
@@ -96,3 +100,8 @@ def save_todo(request):
         json.dump(body, f)
 
     return HttpResponse(content, "is saved")
+
+
+class TodoView(viewsets.ModelViewSet):
+    serializer_class = TodoSerializer
+    queryset = ToDo.objects.all()
