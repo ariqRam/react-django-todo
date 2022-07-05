@@ -78,18 +78,6 @@ class TodoView(viewsets.ModelViewSet):
 
     queryset = ToDo.objects.all()
     serializer_class = TodoSerializer
-    def list(self, request):
-        queryset = ToDo.objects.all()
-        serializer = TodoSerializer(queryset, many=True)
-        return Response(serializer.data)
-    
-    def add_todo(self, request):
-        print(request.data)
-        serializer = TodoSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # this is a mockup endpoint to be deleted in production
