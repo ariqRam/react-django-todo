@@ -29,9 +29,20 @@ const TodoInput = (props) => {
       completed: false,
     };
     console.log(newTodo);
-    const newMockupDb = [...mockupDb, newTodo];
     console.log("submit!!");
-    Axios.post("http://localhost:8000/mockup/", newMockupDb).then((res) => {
+    const { title, description, completed } = newTodo;
+    Axios({
+      method: "post",
+      url: "http://localhost:8000/todo/",
+      headers: {
+        "Content-type": "application/json",
+      },
+      data: {
+        title: title,
+        description: description,
+        completed: completed,
+      },
+    }).then((res) => {
       console.log(res);
     });
 
