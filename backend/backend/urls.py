@@ -18,15 +18,18 @@ from django.urls import path, include
 from rest_framework import routers
 from todo import views
 
-router = routers.DefaultRouter()
-router.register(r'todo', views.TodoView, 'todo')
+# router = routers.DefaultRouter()
+# router.register(r'todo', views.TodoView, 'todo')
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin', admin.site.urls),
     path("", views.home, name="home"),
-    path("", include(router.urls)),
-    path("signup/", views.signup, name="signup"),
-    path("login/", views.login, name="login"),
-    path("logout/", views.logout, name="logout"),
+    path("todo/", views.TodoView.as_view({
+        'get':'list',
+        'post':'add_todo',
+        })),
+    path("signup", views.signup, name="signup"),
+    path("login", views.login, name="login"),
+    path("logout", views.logout, name="logout"),
     path("mockup/", views.save_todo, name="mockup"),
 ]

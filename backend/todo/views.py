@@ -8,7 +8,9 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.models import User, auth
 
-from rest_framework import viewsets
+from rest_framework import viewsets, status
+from rest_framework.response import Response
+
 from .serializers import TodoSerializer
 from .models import ToDo
 
@@ -71,6 +73,24 @@ def login(request):
 def logout(request):
     return HttpResponse("logged out")
 
+class TodoView(viewsets.ModelViewSet):
+
+
+    queryset = ToDo.objects.all()
+    serializer_class = TodoSerializer
+    def list(self, request):
+        queryset = ToDo.objects.all()
+        serializer = TodoSerializer(queryset, many=True)
+        return Response(serializer.data)
+    
+    def add_todo(self, request):
+        print(request.data)
+        serializer = TodoSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 # this is a mockup endpoint to be deleted in production
 @csrf_exempt
@@ -93,6 +113,3 @@ def save_todo(request):
     return HttpResponse(content, "is saved")
 
 
-class TodoView(viewsets.ModelViewSet):
-    serializer_class = TodoSerializer
-    queryset = ToDo.objects.all()
