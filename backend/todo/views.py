@@ -18,15 +18,6 @@ def home(request):
     return render(request, "home.html")
 
 
-def todo(request):
-    """
-    GET : Return all the todo list of the logged user
-    POST : Add a todo
-    DELETE : Delete a set of todos
-    """
-    return render(request, "todo.html")
-
-
 def signup(request):
     if request.method == 'POST':
         first_name = request.POST['first_name']
