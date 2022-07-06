@@ -1,2 +1,6 @@
+# Virtual Environments
 /todo
-dev
+/dev
+
+# Pycache
+__pycache__/
