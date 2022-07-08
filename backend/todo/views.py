@@ -8,8 +8,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.models import User, auth
 
-from rest_framework import viewsets, status
-from rest_framework.response import Response
+from rest_framework import viewsets
 
 from .serializers import TodoSerializer
 from .models import ToDo
@@ -73,9 +72,8 @@ def login(request):
 def logout(request):
     return HttpResponse("logged out")
 
+
 class TodoView(viewsets.ModelViewSet):
-
-
     queryset = ToDo.objects.all()
     serializer_class = TodoSerializer
 
@@ -99,5 +97,3 @@ def save_todo(request):
         json.dump(body, f)
 
     return HttpResponse(content, "is saved")
-
-
